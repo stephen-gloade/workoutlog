@@ -1,23 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+import Landing from './Landing';
+import { useEffect, useState } from 'react'
 
 function App() {
+
+//   const [data, setData] = useState(null);
+//   const [error, setError] = useState(null);
+
+// useEffect(() => {
+//     const fetchData = async () => {
+//         try {
+//             // Fetch data from the server
+//             const response = await fetch('/data');
+            
+//             if (!response.ok) {
+//                 throw new Error('Network response was not ok');
+//             }
+
+//             const data = await response.json();
+//             setData(data);
+//         } catch (error) {
+//             setError('An error occurred while fetching data');
+//             console.error('Error fetching data:', error);
+//         }
+//     };
+
+//     fetchData();
+// }, []);
+  
+
+const [data, setData] = useState(null);
+const [error, setError] = useState(null);
+
+useEffect(() => {
+    // // Fetch data from the server
+    // const dataFetch = async => {
+    //   fetch('/api/data')
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             throw new Error('Network response was not ok');
+    //         }
+    //         return response.json();
+    //     })
+    //     .then(data => setData(data))
+    //     .catch(error => {
+    //         setError('An error occurred while fetching data');
+    //         console.error('Error fetching data:', error);
+    //     });
+
+    //     console.log(data)
+
+    async function fetchData() {
+        try {
+            const response = await fetch('/api/data');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const jsonData = await response.json();
+            setData(jsonData)
+            console.log(jsonData)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+    
+    fetchData();
+    
+}, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Landing/>
     </div>
   );
 }
