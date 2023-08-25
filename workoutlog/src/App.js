@@ -1,4 +1,5 @@
 import Landing from './Landing';
+import Header from './Header';
 import { useEffect, useState } from 'react'
 
 function App() {
@@ -69,6 +70,7 @@ useEffect(() => {
 
   return (
     <div>
+      <Header/>
       <Landing/>
     </div>
   );
