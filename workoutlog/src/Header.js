@@ -4,8 +4,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from './static/repName.png'
 import './css/header.css'
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
+
+  const { isAuthenticated } = useAuth0();
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -33,6 +39,9 @@ const Header = () => {
           </Nav>
         </Navbar.Collapse>
       </Container>
+      <div>
+        {isAuthenticated ? <LogoutButton/> : <LoginButton/>}
+      </div>
     </Navbar>
   );
 }

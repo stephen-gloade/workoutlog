@@ -1,6 +1,8 @@
 import Landing from './Landing';
 import Header from './Header';
 import { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
+import Profile from './Profile';
 
 function App() {
 
@@ -71,7 +73,12 @@ useEffect(() => {
   return (
     <div>
       <Header/>
-      <Landing/>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Landing/>}/>
+          <Route path="/profile" element={<Profile/>}/>
+        </Routes>
+      </Router>
     </div>
   );
 }
