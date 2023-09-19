@@ -1,13 +1,13 @@
 
 const { getDb } = require('../dbConnection');
-const { ObjectId } = require('mongodb');
+
 
 module.exports = {
 
     async createUser(req, res) {
 
         const { name, age } = req.body;
-        // const id = new ObjectId();
+
     try {
         const db = await getDb();
         const collection = db.collection('users');

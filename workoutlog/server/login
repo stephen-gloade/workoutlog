@@ -1,12 +1,11 @@
-function login(email, password, callback) {
-  const bcrypt = require('bcrypt');
-  const MongoClient = require('mongodb@3.1.4').MongoClient;
-  const client = new MongoClient('mongodb://user:pass@localhost');
+const { getDb } = require('../dbConnection');
 
+async function login(email, password, callback) {
+  const bcrypt = require('bcrypt');
   client.connect(function (err) {
     if (err) return callback(err);
 
-    const db = client.db('db-name');
+    const db = await getDb();
     const users = db.collection('users');
 
     users.findOne({ email: email }, function (err, user) {
